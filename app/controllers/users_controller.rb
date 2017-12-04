@@ -1,4 +1,4 @@
-class UserController < ApplicationController
+class UsersController < ApplicationController
 
   def show
 
@@ -19,6 +19,5 @@ class UserController < ApplicationController
   def new
 
   end
-
 
 end
