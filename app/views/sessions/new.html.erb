@@ -1,0 +1,20 @@
+<h1>Login Page</h1>
+<%= link_to "Back", root_path %>
+
+<h3>Log In</h3>
+
+<%= form_for :session, url: sessions_path do |f| %>
+
+  <div class="field">
+    <%= f.label :email %>
+    <%= f.email_field :email %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+  </div>
+
+  <%= f.submit "Log In" %>
+
+<% end %>
