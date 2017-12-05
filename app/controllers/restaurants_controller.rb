@@ -25,6 +25,11 @@ class RestaurantsController < ApplicationController
 
   def edit
     @restaurant = Restaurant.find(params[:id])
+
+    unless current_user && @restaurant.users.ids.include?(current_user.id)
+      redirect_to restaurant_path
+    end
+
   end
 
   def update
