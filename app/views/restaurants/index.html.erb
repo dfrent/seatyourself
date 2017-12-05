@@ -3,7 +3,8 @@
 
 <p>
 <% @restaurants.each do |restaurant| %>
-  <p><%= restaurant.name %></p>
+  <%= link_to(image_tag(restaurant.image_url), "restaurants/#{restaurant.id}") %>
+  <p><%= link_to("#{restaurant.name}", "restaurants/#{restaurant.id}") %></p>
   <p>Address: <%= restaurant.location %></p>
   <p>Capacity: <%= restaurant.capacity %></p>
 <% end %>
