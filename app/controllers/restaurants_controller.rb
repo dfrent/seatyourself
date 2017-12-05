@@ -18,8 +18,8 @@ class RestaurantsController < ApplicationController
     @restaurant.name = params[:restaurant][:name]
     @restaurant.location = params[:restaurant][:location]
     @restaurant.capacity = params[:restaurant][:capacity]
-    @restaurant.open = params[:restaurant][:open]
-    @restaurant.close = params[:restaurant][:close]
+    @restaurant.open_time = params[:restaurant][:open_time]
+    @restaurant.close_time = params[:restaurant][:close_time]
   end
 
 
@@ -32,8 +32,8 @@ class RestaurantsController < ApplicationController
     @restaurant.name = params[:restaurant][:name]
     @restaurant.location = params[:restaurant][:location]
     @restaurant.capacity = params[:restaurant][:capacity]
-    @restaurant.open = params[:restaurant][:open]
-    @restaurant.close = params[:restaurant][:close]
+    @restaurant.open_time = params[:restaurant][:open_time]
+    @restaurant.close_time = params[:restaurant][:close_time]
 
   end
 
