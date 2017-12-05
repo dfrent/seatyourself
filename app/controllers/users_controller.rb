@@ -13,7 +13,11 @@ class UsersController < ApplicationController
     @user.password_confirmation = params[:user][:password_confirmation]
 
     if @user.save
-      # Use _url in controllers
+      # # Auto-login on succesful signup
+      flash[:notice] = 'Account successfully created!'
+
+      session[:user_id] = @user.id
+
       redirect_to root_url
     else
       render :new

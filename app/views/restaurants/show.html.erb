@@ -1,5 +1,6 @@
 <h1><%= @restaurant.name.capitalize %></h1>
 <p> <%= link_to "Home", root_url %> </p>
+<p> <%= link_to "Edit", edit_restaurant_path %> </p>
 
 <h3><%= @restaurant.name %></h3>
 <p><%= image_tag(@restaurant.image_url) %></p>

@@ -25,6 +25,12 @@ class RestaurantsController < ApplicationController
 
   def edit
     @restaurant = Restaurant.find(params[:id])
+
+    unless current_user && @restaurant.users.ids.include?(current_user.id)
+      flash[:alert] = "You are not the owner of this restaurant."
+      redirect_to restaurant_path
+    end
+
   end
 
   def update
