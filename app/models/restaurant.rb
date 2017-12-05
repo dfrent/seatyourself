@@ -48,4 +48,9 @@ class Restaurant < ApplicationRecord
     price_array
   end
 
+  def self.look_for(search)
+    find_by("name LIKE ? OR location LIKE ? OR capacity LIKE ?", "%#{search}%", "%#{search}%", "%#{search}%")
+  end
+
+
 end
