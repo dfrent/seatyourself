@@ -1,1 +1,20 @@
-<h1>Restaurant show. test test</h1>
+<h1>User Show Page</h1>
+<h1>this is found in users.show.html.erb</h1>
+
+<section class="show-user-profile">  
+  <p> <%= link_to 'Edit', edit_reservation_path(@reservation) %> <%= link_to 'Delete', reservation_path(@reservation), method: :delete, data: {confirm: "Are you sure?" } %> </p>
+  <p> <%= @reservation.restaurants.name %> </p>
+  <p> <%= @reservation.restaurants.description %> </p>
+  <%= image_tag @reservation.restaurants.image_url %>
+  <h2>Tags: image_url Please ad</h2>
+
+  <h2>Comments:</h2>
+  <ul>
+    <% @picture.comments.each do |comment| %>
+      <li>
+        <p> On <%= comment.created_at %> <%= comment.name %> said: </p>
+        <p> <%= comment.message %> </p>
+      </li>
+    <% end %>
+  </ul>
+</section>
