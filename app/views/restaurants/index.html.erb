@@ -1,1 +1,10 @@
-<h1>Restaurant index</h1>
+<h1>Seat Yourself</h1>
+<h2>Get a seat quick...</h2>
+
+<p>
+<% @restaurants.each do |restaurant| %>
+  <p><%= restaurant.name %></p>
+  <p>Address: <%= restaurant.location %></p>
+  <p>Capacity: <%= restaurant.capacity %></p>
+<% end %>
+</p>
