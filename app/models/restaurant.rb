@@ -7,7 +7,14 @@ class Restaurant < ApplicationRecord
   validates :name, :location, :capacity, :open_time, :close_time, presence: true
 
   def available_times
-
+    time_spent_open = (close_time - open_time).to_f
+    first_time = open_time
+    time_list = []
+    ((time_spent_open.to_i) * 2).times do |time|
+      time_list << first_time
+      first_time += 0.5
+    end
+    time_list.sort
   end
 
   def price_range

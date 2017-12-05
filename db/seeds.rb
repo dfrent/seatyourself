@@ -7,4 +7,4 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 omair = User.create(name: "Omair", email: "omair@gmail.com", password: "fakefakefake", authority: "customer")
-pai = Restaurant.create(name: "Pai", location: "123 Duncan St.", capacity: 200, open: "11:00", close: "20:00")
+pai = Restaurant.create(name: "Pai", location: "123 Duncan St.", capacity: 200, open_time: "11:00", close_time: "20:00", image_url: "https://picsum.photos/200")
