@@ -7,7 +7,15 @@
 <p>Address: <%= @restaurant.location %></p>
 <p>Hours: <%= @restaurant.open_time %> - <%= @restaurant.close_time %> </p>
 
- <p>Reservation Times: <%= @restaurant.available_times[0] %> - <%= @restaurant.available_times[-1]%></p>
+<h3>Reservation Times</h3>
+<ul>
+  <div class="time_list_wrapper">
+    <% @restaurant.available_times.each do |time_slot| %>
+      <span class='time_slot_wrapper'><%= time_slot %></span>
+    <% end %>
+  </div>
+</ul>
+
 
 <p>Price Range: <%= @restaurant.price_range[0].price %> - <%= @restaurant.price_range[-1].price %></p>
 
