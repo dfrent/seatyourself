@@ -1,7 +1,13 @@
-<h1>Restaurant show</h1>
-<p> <%= link_to "back to Resaurants", root_url %> </p>
+<h1><%= @restaurant.name.capitalize %></h1>
+<p> <%= link_to "Home", root_url %> </p>
 
+<p><%= image_tag(@restaurant.image_url) %></p>
+<p><%= @restaurant.name %></p>
+<p>Address: <%= @restaurant.location %></p>
+<p>Hours: <%= @restaurant.open_time %> - <%= @restaurant.close_time %> </p>
 
-<img src="" alt="">
-<p> <%= @restaurant.name %> : <%= @restaurant.location %>
-    <%= @restaurant.open_time %>- <%= @restaurant.close_time %> </p>
+<p>Menu</p>
+<% @restaurant.food_items.each do |item| %>
+  <p><%= item.name %>: <%= item.price %></p>
+  <p><%= item.description %></p>
+<% end %>
