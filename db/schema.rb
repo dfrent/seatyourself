@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20171205183026) do
+=======
+ActiveRecord::Schema.define(version: 20171205181542) do
+>>>>>>> fe27601a6a812e27336ba240d09ffa4d51bbef92
 
   create_table "food_items", force: :cascade do |t|
     t.integer  "restaurant_id"
@@ -53,10 +57,10 @@ ActiveRecord::Schema.define(version: 20171205183026) do
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
-    t.string   "password"
+    t.string   "password_digest"
     t.string   "authority"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
 end
