@@ -7,6 +7,8 @@
 <p>Address: <%= @restaurant.location %></p>
 <p>Hours: <%= @restaurant.open_time %> - <%= @restaurant.close_time %> </p>
 
+<p>Price Range: <%= @restaurant.price_range[0].price %> - <%= @restaurant.price_range[-1].price %></p>
+
 <h3>Menu</h3>
 <% @restaurant.food_items.each do |item| %>
   <p><%= item.name %>: <%= item.price %></p>

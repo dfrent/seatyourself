@@ -11,7 +11,8 @@ class Restaurant < ApplicationRecord
   end
 
   def price_range
-    food_items
+    price_array = food_items.sort_by {|item| item.price}
+    price_array
   end
 
 end
