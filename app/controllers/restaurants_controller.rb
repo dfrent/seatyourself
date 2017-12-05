@@ -51,10 +51,19 @@ class RestaurantsController < ApplicationController
     redirect_to restaurant_url
   end
 
-
-
-
-
+    def look_for
+      @restaurant = Restaurant.all
+      if params[:search]
+      @restaurant = Restaurant.look_for(params[:search])
+        if @restaurant
+          redirect_to Restaurant.look_for(params[:search])
+        else
+          redirect_to root_url
+        end
+      else
+        redirect_to root_url
+      end
+    end
 
 
 
