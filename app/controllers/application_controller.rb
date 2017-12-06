@@ -9,4 +9,18 @@ class ApplicationController < ActionController::Base
     session[:user_id] && User.find(session[:user_id])
   end
 
+  def ensure_user_is_logged_in
+    unless current_user
+      flash[:alert] = "Please log in"
+      redirect_to new_user_url
+    end
+  end
+
+  def ensure_owner
+      unless current_user == :authority
+        flash[:alert] = "access to owners only"
+        redirect_to root_url
+      end
+  end
+
 end
