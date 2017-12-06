@@ -10,8 +10,13 @@ class SessionsController < ApplicationController
       flash[:notice] = 'Login Successful'
 
       session[:user_id] = u.id
-
-      redirect_to root_url
+      if session[:restaurant_id_for_redirect]
+        restaurant_redirect = session[:restaurant_id_for_redirect]
+        session[:restaurant_id_for_redirect] = nil
+        redirect_to restaurant_path(restaurant_redirect)
+      else
+        redirect_to root_url
+      end
     else
       flash.now[:alert] = 'Email/password incorrect'
       render :new
