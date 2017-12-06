@@ -25,7 +25,7 @@ class FoodItemsController < ApplicationController
       flash[:success] = "food item successfully added to the menu!"
       redirect_to restaurants_path
     else
-      flash[:alert] = "Sorry, there were issues adding your food item."
+      flash.now[:alert] = "Sorry, there were issues adding your food item."
       render "restaurants/show"
     end
   end

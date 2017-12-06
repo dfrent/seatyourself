@@ -12,9 +12,8 @@ class UsersController < ApplicationController
     @user.password = params[:user][:password]
     @user.password_confirmation = params[:user][:password_confirmation]
 
-    result_of_saving = @user.save
+    if @user.save
 
-    if result_of_saving
       # # Auto-login on succesful signup
       flash[:notice] = 'Account successfully created!'
 

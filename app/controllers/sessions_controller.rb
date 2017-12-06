@@ -9,11 +9,18 @@ class SessionsController < ApplicationController
     if @user && @user.authenticate(params[:session][:password])
       flash[:notice] = 'Login Successful'
 
-      session[:user_id] = @user.id
 
-      redirect_to root_url
+      session[:user_id] = u.id
+      if session[:restaurant_id_for_redirect]
+        restaurant_redirect = session[:restaurant_id_for_redirect]
+        session[:restaurant_id_for_redirect] = nil
+        redirect_to restaurant_path(restaurant_redirect)
+      else
+        redirect_to root_url
+      end
+
     else
-      flash[:alert] = 'Email/password incorrect'
+      flash.now[:alert] = 'Email/password incorrect'
       render :new
     end
   end

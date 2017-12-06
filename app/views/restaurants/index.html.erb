@@ -2,10 +2,12 @@
 <%= current_user %>
 <h2>Get a seat quick...</h2>
 
+<p><%= link_to("Are you a restaurant owner? Add your restaurant!", "restaurants/new") %></p>
+
 <p>
 <% @restaurants.each do |restaurant| %>
 
-  <p><%= link_to("#{restaurant.name}", "restaurants/#{restaurant.id}") %></p>
+  <p><%= link_to("#{restaurant.name}", restaurant_path(restaurant)) %></p>
   <p>Address: <%= restaurant.location %></p>
   <p>Capacity: <%= restaurant.capacity %></p>
 <% end %>

@@ -22,6 +22,18 @@ class RestaurantsController < ApplicationController
     @restaurant.capacity = params[:restaurant][:capacity]
     @restaurant.open_time = params[:restaurant][:open_time]
     @restaurant.close_time = params[:restaurant][:close_time]
+    @restaurant.max_reservation_size = params[:restaurant][:max_reservation_size]
+    @restaurant.users << current_user
+
+
+    if @restaurant.save
+      flash[:success] = "#{@restaurant.name} has been successfully created"
+      redirect_to restaurant_path(@restaurant)
+    else
+      flash.now[:alert] = "Sorry, there were issues creating your restaurant"
+      render 'new'
+    end
+
   end
 
 
@@ -48,12 +60,11 @@ class RestaurantsController < ApplicationController
       flash[:success] = "#{@restaurant.name} has been successfully updated"
       redirect_to restaurant_path
     else
-      flash[:alert] = "Sorry, there were issues updating your restaurant"
+      flash.now[:alert] = "Sorry, there were issues updating your restaurant"
       render 'edit'
     end
 
   end
-
 
   def delete
     @restaurant = Restaurant.find(params[:id])
@@ -62,23 +73,18 @@ class RestaurantsController < ApplicationController
     redirect_to restaurant_url
   end
 
-
-
-    def look_for
-      @restaurants = Restaurant.all
-      if params[:search]
-      @restaurants = Restaurant.look_for(params[:search])
-        if @restaurants.length > 0  
-          render :index
-        else
-          redirect_to root_url
-        end
+  def look_for
+    @restaurants = Restaurant.all
+    if params[:search]
+    @restaurants = Restaurant.look_for(params[:search])
+      if @restaurants.length > 0
+        render :index
       else
         redirect_to root_url
       end
+    else
+      redirect_to root_url
     end
-
-
-
+  end
 
 end
