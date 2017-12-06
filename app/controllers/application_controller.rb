@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
   end
 
   def ensure_owner
-      unless current_user == :authority
+    unless current_user && @restaurant.users.ids.include?(current_user.id)
         flash[:alert] = "access to owners only"
         redirect_to root_url
       end
