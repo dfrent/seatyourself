@@ -1,8 +1,6 @@
 class ReservationsController < ApplicationController
 
-  before_action :ensure_user_is_logged_in, only: [:create, :edit, :update, :destroy]
-
-
+  before_action :ensure_logged_in
 
   def show
     @reservation = Reservation.all
@@ -17,7 +15,7 @@ class ReservationsController < ApplicationController
     @reservation.user_id = current_user.id
 
     if @reservation.save
-      flash[:success] = "Reservation successful!"
+      flash[:success] = "Reservation made for #{@reservation.restaurant.name} at #{@reservation.time}"
       redirect_to root_url
     else
       flash[:alert] = "Sorry, there were issues making your reservation."

@@ -49,7 +49,7 @@ class RestaurantsController < ApplicationController
   def delete
     @restaurant = Restaurant.find(params[:id])
     @restaurant.destroy
-    flash[:notice] = "you have successfully deleted a restaurant"
+    flash[:notice] = "You have successfully deleted a restaurant"
     redirect_to restaurant_url
   end
 
