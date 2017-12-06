@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
 
       redirect_to root_url
     else
-      flash[:alert] = 'Email/password incorrect'
+      flash.now[:alert] = 'Email/password incorrect'
       render :new
     end
   end

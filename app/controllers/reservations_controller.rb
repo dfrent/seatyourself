@@ -19,7 +19,7 @@ class ReservationsController < ApplicationController
       flash[:success] = "Reservation made for #{@reservation.restaurant.name} at #{@reservation.time}"
       redirect_to root_url
     else
-      flash[:alert] = "Sorry, there were issues making your reservation."
+      flash.now[:alert] = "Sorry, there were issues making your reservation."
       render 'new'
     end
 
