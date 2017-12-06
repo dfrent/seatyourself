@@ -42,6 +42,7 @@ class RestaurantsController < ApplicationController
     @restaurant.capacity = params[:restaurant][:capacity]
     @restaurant.open_time = params[:restaurant][:open_time]
     @restaurant.close_time = params[:restaurant][:close_time]
+    @restaurant.max_reservation_size = params[:restaurant][:max_reservation_size]
 
     if @restaurant.save
       flash[:success] = "#{@restaurant.name} has been successfully updated"
