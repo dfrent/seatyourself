@@ -15,4 +15,5 @@ class Reservation < ApplicationRecord
 
     size < current_capacity
   end
+
 end

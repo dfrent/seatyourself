@@ -1,10 +1,9 @@
-<h1>Reservation new</h1>
-<h1>found in reservation.view.html.erb</h1>
+<h1>Make a Reservation</h1>
 
-<%= form_for @reservation do |f| %>
+<%= form_for @reservation, url: new_restaurant_reservation_path do |f| %>
   <div class="field">
     <p><%= f.label :time %></p>
-    <p><%= f.text_field :time %></p>
+    <p><%= f.number_field :time %></p>
   </div>
 
   <div class="field">
