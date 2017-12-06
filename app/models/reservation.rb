@@ -2,8 +2,9 @@ class Reservation < ApplicationRecord
   belongs_to :user
   belongs_to :restaurant
 
+  validate  :room_in_restaurant?
   validates :time, :size, presence: true
-  validates :size, numericality: { message: "%{value} seems wrong. Please enter a number..." }, unless: :restaurant_at_capacity?
+  validates :size, numericality: { message: "%{value} seems wrong. Please enter a number..." }
 
   def room_in_restaurant?
     current_bookings = 0
@@ -13,7 +14,11 @@ class Reservation < ApplicationRecord
 
     current_capacity = restaurant.capacity - current_bookings
 
-    size < current_capacity
+    if size < current_capacity
+      true
+    else
+      errors.add(:size, "of reservation is too large. Apologies!")
+    end
   end
 
 end

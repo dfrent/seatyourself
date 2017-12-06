@@ -3,7 +3,7 @@ class ReservationsController < ApplicationController
   before_action :ensure_user_is_logged_in, only: [:create, :edit, :update, :destroy]
 
   def ensure_user_is_logged_in
-    unless current_user == @reservation.user
+    unless current_user
       flash[:alert] = "Please log in"
       redirect_to new_user_url
     end
@@ -15,16 +15,18 @@ class ReservationsController < ApplicationController
 
   def create
     @reservation = Reservation.new
-
+    @restaurant = Restaurant.find(params[:restaurant_id])
     @reservation.time = params[:reservation][:time]
     @reservation.size = params[:reservation][:size]
-
-    @reservation.current_user_id = current_user.id
+    @reservation.restaurant_id = params[:restaurant_id]
+    @reservation.user_id = current_user.id
 
     if @reservation.save
+      flash[:success] = "Reservation successful!"
       redirect_to root_url
     else
-      render :root_url
+      flash[:alert] = "Sorry, there were issues making your reservation."
+      render 'new'
     end
 
   end
@@ -46,7 +48,9 @@ class ReservationsController < ApplicationController
   end
 
   def new
-    @reservation= Reservation.new
+    @reservation = Reservation.new
+
+    @restaurant = Restaurant.find(params[:restaurant_id])
   end
 
   def destroy

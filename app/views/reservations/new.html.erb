@@ -1,6 +1,12 @@
 <h1>Make a Reservation</h1>
 
-<%= form_for @reservation, url: new_restaurant_reservation_path do |f| %>
+<p>
+<% @reservation.errors.full_messages.each do |error| %>
+  <%= error %>
+<% end %>
+</p>
+
+<%= form_for @reservation, url: restaurant_reservations_path(@restaurant) do |f| %>
   <div class="field">
     <p><%= f.label :time %></p>
     <p><%= f.number_field :time %></p>
