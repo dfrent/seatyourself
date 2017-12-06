@@ -22,7 +22,7 @@ class ReservationsController < ApplicationController
     @reservation.user_id = current_user.id
 
     if @reservation.save
-      flash[:success] = "Reservation successful!"
+      flash[:success] = "Reservation made for #{@reservation.restaurant.name} at #{@reservation.time}"
       redirect_to root_url
     else
       flash[:alert] = "Sorry, there were issues making your reservation."
