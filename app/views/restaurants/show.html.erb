@@ -1,6 +1,8 @@
+
 <p> <% if @restaurant.users == current_user %>
     <%= link_to "Edit: menu, hours, or address", edit_restaurant_path %>
     <% end %> </p>
+
 
 <h3><%= @restaurant.name %></h3>
 
@@ -13,7 +15,35 @@
 <p>Price Range: <%= @restaurant.price_range[0].price %> - <%= @restaurant.price_range[-1].price %></p>
 
 <h3>Menu</h3>
+
 <% @restaurant.food_items.each do |item| %>
   <p><%= item.name %>: <%= item.price %></p>
   <p><%= item.description %></p>
+<% end %>
+
+<p>
+<% @food_item.errors.full_messages.each do |error| %>
+  <%= error %>
+<% end %>
+</p>
+
+<%= form_for @food_item, url: restaurant_food_items_url(@restaurant) do |f| %>
+  <div class="field">
+    <p><%= f.label :price %></p>
+    <p><%= f.number_field :price, class: :text_field, step: :any %></p>
+  </div>
+
+  <div class="field">
+    <p><%= f.label :name %></p>
+    <p><%= f.text_field :name %></p>
+  </div>
+
+  <div class="field">
+    <p><%= f.label :food_type %></p>
+    <p><%= f.text_field :food_type %></p>
+  </div>
+
+  <div class="field">
+    <p><%= f.submit  %></p>
+  </div>
 <% end %>

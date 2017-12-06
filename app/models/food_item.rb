@@ -3,7 +3,7 @@ class FoodItem < ApplicationRecord
 
 validates :name, :food_type, :price, presence: true
 
-validates :food_type, inclusion:{in:  %w(appetizer entree desserst drink drink-non side)}
+validates :food_type, inclusion:{in:  %w(appetizer entree desserts drink drink-non side)}
 
 
 

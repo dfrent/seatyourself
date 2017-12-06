@@ -5,7 +5,7 @@ class Restaurant < ApplicationRecord
   has_many :food_items
 
   validates :name, :location, :capacity, :open_time, :close_time, presence: true
-
+  
   def available_times
     time_spent_open = (close_time - open_time)
     first_time = open_time
@@ -51,6 +51,7 @@ class Restaurant < ApplicationRecord
   def self.look_for(search)
     find_by("name LIKE ? OR location LIKE ? OR capacity LIKE ?", "%#{search}%", "%#{search}%", "%#{search}%")
   end
+
 
 
 end
