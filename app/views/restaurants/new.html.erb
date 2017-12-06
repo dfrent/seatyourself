@@ -1,1 +1,7 @@
 <h1>Restaurant new</h1>
+
+<p>
+<% @restaurant.errors.full_messages.each do |error| %>
+  <%= error %>
+<% end %>
+</p>
