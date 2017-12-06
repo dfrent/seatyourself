@@ -7,10 +7,7 @@ class ApplicationController < ActionController::Base
 
   def current_user
     session[:user_id] && User.find(session[:user_id])
-
   end
-
-  
 
   def ensure_user_is_logged_in
     unless current_user
