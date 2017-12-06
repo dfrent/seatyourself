@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20171206194919) do
     t.integer  "size"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.date     "date"
   end
 
   create_table "restaurants", force: :cascade do |t|
