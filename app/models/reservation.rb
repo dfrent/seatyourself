@@ -4,17 +4,18 @@ class Reservation < ApplicationRecord
 
   validate  :room_in_restaurant?
   validates :time, :size, presence: true
-  validates :size, numericality: { message: "%{value} seems wrong. Please enter a number..." }
+  validates :size, numericality: { message: "%{value} seems wrong. Please enter a number." }
+  validates :size, numericality: { :greater_than_or_equal_to => 1, message: "of reservation can't be negative." }
 
   def room_in_restaurant?
     current_bookings = 0
-    restaurant.reservations.each do |reservation|
+    restaurant.reservations.where(time: "#{self.time}").each do |reservation|
       current_bookings += reservation.size
     end
 
     current_capacity = restaurant.capacity - current_bookings
 
-    if size < current_capacity
+    if size <= current_capacity
       true
     else
       errors.add(:size, "of reservation is too large. Apologies!")

@@ -9,7 +9,7 @@
 <%= form_for @reservation, url: restaurant_reservations_path(@restaurant) do |f| %>
   <div class="field">
     <p><%= f.label :time %></p>
-    <p><%= f.number_field :time %></p>
+    <p><%= f.select(:time, @restaurant.available_times) %></p>
   </div>
 
   <div class="field">
