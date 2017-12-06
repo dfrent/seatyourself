@@ -43,6 +43,14 @@ class RestaurantsController < ApplicationController
     @restaurant.open_time = params[:restaurant][:open_time]
     @restaurant.close_time = params[:restaurant][:close_time]
 
+    if @restaurant.save
+      flash[:success] = "#{@restaurant.name} has been successfully updated"
+      redirect_to restaurant_path
+    else
+      flash[:alert] = "Sorry, there were issues updating your restaurant"
+      render 'edit'
+    end
+
   end
 
 
