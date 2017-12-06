@@ -5,13 +5,14 @@ class Reservation < ApplicationRecord
   validates :time, :size, presence: true
   validates :size, numericality: { message: "%{value} seems wrong. Please enter a number..." }, unless: :restaurant_at_capacity?
 
-
-private
-    def restaurant_at_capacity?
-      puts self.restaurant
-      if self.size > self.restaurant.capacity
-        puts "Restaurant is at capacity"
-      end
+  def room_in_restaurant?
+    current_bookings = 0
+    restaurant.reservations.each do |reservation|
+      current_bookings += reservation.size
     end
 
+    current_capacity = restaurant.capacity - current_bookings
+
+    size < current_capacity
+  end
 end
