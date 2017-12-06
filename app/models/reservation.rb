@@ -4,6 +4,7 @@ class Reservation < ApplicationRecord
 
   validate  :room_in_restaurant?
   validate  :in_the_past?
+  validate  :reservation_too_large?
   # validate  :after_close?
   # validate  :before_open?
   validates :time, :size, presence: true
@@ -22,6 +23,12 @@ class Reservation < ApplicationRecord
       true
     else
       errors.add(:size, "of reservation is too large. Apologies!")
+    end
+  end
+
+  def reservation_too_large?
+    if size > restaurant.max_reservation_size
+      errors.add(:size, "of reservation is too large. Must be #{restaurant.max_reservation_size} or less")
     end
   end
 

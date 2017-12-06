@@ -4,8 +4,10 @@ class Restaurant < ApplicationRecord
   has_many :reservations
   has_many :food_items
 
-  validates :name, :location, :capacity, :open_time, :close_time, presence: true
-  
+  validates :name, :location, :capacity, :open_time, :close_time, :max_reservation_size, presence: true
+  validates :max_reservation_size, numericality: { message: "%{value} seems wrong. Please enter a number." }
+  validates :max_reservation_size, numericality: { :greater_than_or_equal_to => 1, message: " can't be negative." }
+
   def available_times
     time_spent_open = (close_time - open_time)
     first_time = open_time
@@ -51,7 +53,5 @@ class Restaurant < ApplicationRecord
   def self.look_for(search)
     find_by("name LIKE ? OR location LIKE ? OR capacity LIKE ?", "%#{search}%", "%#{search}%", "%#{search}%")
   end
-
-
 
 end
