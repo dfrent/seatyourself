@@ -11,7 +11,8 @@ class UsersController < ApplicationController
     @user.name = params[:user][:name]
     @user.password = params[:user][:password]
     @user.password_confirmation = params[:user][:password_confirmation]
-    @user.authority = params[:user][:authority]
+   
+
 
 
     if @user.save
