@@ -7,7 +7,9 @@
 
 <h3><%= link_to "Make a reservation?", new_restaurant_reservation_path(@restaurant) %></h3>
 
-<p>Price Range: <%= @restaurant.price_range[0].price %> - <%= @restaurant.price_range[-1].price %></p>
+<% if @restaurant.food_items.length > 0 %>
+  <p>Price Range: <%= @restaurant.price_range[0].price %> - <%= @restaurant.price_range[-1].price %></p>
+<% end %>
 
 <h3>Menu</h3>
 
