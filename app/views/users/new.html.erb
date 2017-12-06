@@ -1,8 +1,8 @@
 
 <% if @user.errors.any? %>
     <ul>
-      <%= @user.errors.each do |m| %>
-        <li><%= m %><li>
+      <% @user.errors.full_messages.each do |m| %>
+        <li><%= m %></li>
       <% end %>
     </ul>
 <% end %>
@@ -11,27 +11,27 @@
 
 <%= form_for @user, url: user_path do |f| %>
 
-  <div class+'field'>
+  <div class='field'>
     <%= f.label :name %>
     <%= f.text_field :name%>
   </div>
 
-  <div class+'field'>
+  <div class='field'>
     <%= f.label :email %>
     <%= f.email_field :email%>
   </div>
 
-  <div class+'field'>
+  <div class='field'>
     <%= f.label :password %>
     <%= f.password_field :password%>
   </div>
 
-  <div class+'field'>
+  <div class='field'>
     <%= f.label :password_confirmation %>
     <%= f.password_field :password_confirmation%>
   </div>
 
-  
+
 
   <%= f.submit 'Sign Up' %>
 

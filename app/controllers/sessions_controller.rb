@@ -4,12 +4,12 @@ class SessionsController < ApplicationController
   end
 
   def create
-    u = User.find_by(email: params[:session][:email])
+    @user = User.find_by(email: params[:session][:email])
 
-    if u && u.authenticate(params[:session][:password])
+    if @user && @user.authenticate(params[:session][:password])
       flash[:notice] = 'Login Successful'
 
-      session[:user_id] = u.id
+      session[:user_id] = @user.id
 
       redirect_to root_url
     else

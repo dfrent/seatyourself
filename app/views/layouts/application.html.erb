@@ -16,7 +16,11 @@
   <p>
     <%= link_to "Home", root_path %>
     |
+    <%= link_to "Edit", edit_user_url %>
+    |
     <%= link_to "Logout", sessions_path, method: :delete %>
+    |
+    <%= link_to "Destroy", user_path, method: :delete %>
   </p>
   Hello <%= current_user.name %>
 <% else %>
