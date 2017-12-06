@@ -1,5 +1,14 @@
 class ReservationsController < ApplicationController
 
+  before_action :ensure_user_is_logged_in, only: [:create, :edit, :update, :destroy]
+
+  def ensure_user_is_logged_in
+    unless current_user == @reservation.user
+      flash[:alert] = "Please log in"
+      redirect_to new_user_url
+    end
+  end
+
   def show
     @reservation = Reservation.all
   end

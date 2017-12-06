@@ -31,6 +31,13 @@
     <%= f.password_field :password_confirmation%>
   </div>
 
+  <div class+'field'>
+    <%= f.radio_button :authority, 'customer' %>
+    <%= f.label :authority, 'Customer', :value => 'customer' %>
+    <%= f.radio_button :authority, 'owner' %>
+    <%= f.label :authority, 'Restaurant Owner', :value => 'owner' %>
+  </div>
+
   <%= f.submit 'Sign Up' %>
 
 <% end %>

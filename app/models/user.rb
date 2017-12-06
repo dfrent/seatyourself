@@ -8,6 +8,9 @@ class User < ApplicationRecord
   has_many :reservations
 
   validates :name, presence: true
+  validates :authority, presence: true
+
+  # validates_inclusion_of :authority, inclusion: [customer, authority]
   validates :name, :password, :email, presence: true
   validates :email, uniqueness: {message: "%{value} is already taken. Please enter a new email"}
 
