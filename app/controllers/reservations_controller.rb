@@ -11,6 +11,7 @@ class ReservationsController < ApplicationController
     @restaurant = Restaurant.find(params[:restaurant_id])
     @reservation.time = params[:reservation][:time]
     @reservation.size = params[:reservation][:size]
+    @reservation.date = params[:reservation][:date]
     @reservation.restaurant_id = params[:restaurant_id]
     @reservation.user_id = current_user.id
 
@@ -50,6 +51,6 @@ class ReservationsController < ApplicationController
 
   end
 
-
-
 end
+
+# Date.new(@reservation["date(1i)"].to_i, @reservation["date(2i)"].to_i, @reservation["date(3i)"].to_i)
