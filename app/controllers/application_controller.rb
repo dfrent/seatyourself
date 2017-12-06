@@ -7,6 +7,20 @@ class ApplicationController < ActionController::Base
 
   def current_user
     session[:user_id] && User.find(session[:user_id])
+
+    if session[:user_id]
+      User.find(session[:user_id])
+    else
+      return nil
+    end
+
+  end
+
+  def ensure_logged_in
+    unless current_user
+      flash[:alert] = "You must be logged in to make a reservation"
+      redirect_to new_sessions_url
+    end
   end
 
   def ensure_user_is_logged_in

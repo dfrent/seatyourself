@@ -1,1 +1,28 @@
-<h1>USER edit</h1>
+<h2> Edit User details <%= @user.id %> </h2>
+<%= form_for @user, url: user_path do |f| %>
+
+  <div class='field'>
+    <%= f.label :name %>
+    <%= f.text_field :name%>
+  </div>
+
+  <div class='field'>
+    <%= f.label :email %>
+    <%= f.email_field :email%>
+  </div>
+
+  <div class='field'>
+    <%= f.label :password %>
+    <%= f.password_field :password%>
+  </div>
+
+  <div class='field'>
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation%>
+  </div>
+
+
+  <div class="field">
+  <p><%= f.submit  %></p>
+  </div>
+<% end %>

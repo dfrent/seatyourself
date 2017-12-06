@@ -8,32 +8,32 @@
 </head>
 <body>
 
-  <header>
-    <li class='search_bar'>
-      <%= form_tag(restaurants_look_for_path, :method => "get", id: "search-form") do %>
-          <%= text_field_tag :search, params[:search], placeholder: "Search Restaurants" %>
-          <%= submit_tag "Search", :name => nil %>
-      <% end %>
-    </li>
-    <% if current_user %>
-    <li class='link'>
-      <%= link_to "Home", root_path %>
-    </li>
-    <li class='link'>
-      <%= link_to "Logout", sessions_path, method: :delete %>
-    </li>
-    <% else %>
-    <li class='link'>
-      <%= link_to "Home", root_path %>
-    </li>
-    <li class='link'>
-      <%= link_to "Sign Up", new_user_path %>
-    </li>
-    <li class='link'>
-      <%= link_to "Log In", new_sessions_path %>
-    </li>
+<header>
+  <li class='search_bar'>
+    <%= form_tag(restaurants_look_for_path, :method => "get", id: "search-form") do %>
+        <%= text_field_tag :search, params[:search], placeholder: "Search Restaurants" %>
+        <%= submit_tag "Search", :name => nil %>
     <% end %>
-  </header>
+  </li>
+  <% if current_user %>
+  <li class='link'>
+    <%= link_to "Home", root_path %>
+  </li>
+  <li class='link'>
+    <%= link_to "Logout", sessions_path, method: :delete %>
+  </li>
+  <% else %>
+  <li class='link'>
+    <%= link_to "Home", root_path %>
+  </li>
+  <li class='link'>
+    <%= link_to "Sign Up", new_user_path %>
+  </li>
+  <li class='link'>
+    <%= link_to "Log In", new_sessions_path %>
+  </li>
+  <% end %>
+</header>
 
 <p style="background-color: red"> <%= flash[:alert] %> </p>
 <p> <%= flash[:success] %> </p>

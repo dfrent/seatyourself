@@ -4,10 +4,11 @@ class SessionsController < ApplicationController
   end
 
   def create
-    u = User.find_by(email: params[:session][:email])
+    @user = User.find_by(email: params[:session][:email])
 
-    if u && u.authenticate(params[:session][:password])
+    if @user && @user.authenticate(params[:session][:password])
       flash[:notice] = 'Login Successful'
+
 
       session[:user_id] = u.id
       if session[:restaurant_id_for_redirect]
@@ -17,6 +18,7 @@ class SessionsController < ApplicationController
       else
         redirect_to root_url
       end
+
     else
       flash.now[:alert] = 'Email/password incorrect'
       render :new
