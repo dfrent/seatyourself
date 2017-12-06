@@ -13,7 +13,7 @@ class User < ApplicationRecord
   # validates_inclusion_of :authority, inclusion: [customer, authority]
   validates :name, :password, :email, presence: true
   validates :email, uniqueness: {message: "%{value} is already taken. Please enter a new email"}
-
+  
 
   def default_values
     self.authority ||= 'customer'

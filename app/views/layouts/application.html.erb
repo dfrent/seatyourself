@@ -27,10 +27,10 @@
     |
     <%= link_to "Log In", new_sessions_path %>
   </p>
-  Please login to make a reservation.
+
 <% end %>
 
-<p> <%= flash[:alert] %> </p>
+<p style="background-color: red"> <%= flash[:alert] %> </p>
 <p> <%= flash[:success] %> </p>
 
 <%= yield %>
