@@ -1,6 +1,6 @@
 class ReservationsController < ApplicationController
 
-  before_action :ensure_logged_in
+  before_action :ensure_logged_in_for_reservation
 
   def show
     @reservation = Reservation.all
@@ -50,7 +50,15 @@ class ReservationsController < ApplicationController
   def destroy
 
   end
+ def ensure_logged_in_for_reservation
+   unless current_user
+     flash[:alert] = "You must be logged in to make a reservation"
+     session[:restaurant_id_for_redirect] = params[:restaurant_id]
+     redirect_to new_sessions_url
+   end
+
+ end
+
 
 end
-
 # Date.new(@reservation["date(1i)"].to_i, @reservation["date(2i)"].to_i, @reservation["date(3i)"].to_i)
