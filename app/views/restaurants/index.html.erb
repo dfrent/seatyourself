@@ -6,7 +6,7 @@
 <p>
 <% @restaurants.each do |restaurant| %>
 
-  <p><%= link_to("#{restaurant.name}", "restaurants/#{restaurant.id}") %></p>
+  <p><%= link_to("#{restaurant.name}", restaurant_path(restaurant)) %></p>
   <p>Address: <%= restaurant.location %></p>
   <p>Capacity: <%= restaurant.capacity %></p>
 <% end %>

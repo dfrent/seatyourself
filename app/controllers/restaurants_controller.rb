@@ -66,7 +66,6 @@ class RestaurantsController < ApplicationController
 
   end
 
-
   def delete
     @restaurant = Restaurant.find(params[:id])
     @restaurant.destroy
@@ -74,23 +73,18 @@ class RestaurantsController < ApplicationController
     redirect_to restaurant_url
   end
 
-
-
-    def look_for
-      @restaurants = Restaurant.all
-      if params[:search]
-      @restaurants = Restaurant.look_for(params[:search])
-        if @restaurants.length > 0  
-          render :index
-        else
-          redirect_to root_url
-        end
+  def look_for
+    @restaurants = Restaurant.all
+    if params[:search]
+    @restaurants = Restaurant.look_for(params[:search])
+      if @restaurants.length > 0
+        render :index
       else
         redirect_to root_url
       end
+    else
+      redirect_to root_url
     end
-
-
-
+  end
 
 end
