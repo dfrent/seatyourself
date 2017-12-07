@@ -13,3 +13,18 @@
  *= require_tree .
  *= require_self
  */
+header {
+  list-style: none;
+}
+
+a {
+   text-decoration: none;
+}
+
+.search_bar {
+   float: right;
+}
+
+.link {
+   display: inline-block;
+}

@@ -20,6 +20,9 @@
     <%= link_to "Home", root_path %>
   </li>
   <li class='link'>
+    <%= link_to "My Account", user_path %>
+  </li>
+  <li class='link'>
     <%= link_to "Logout", sessions_path, method: :delete %>
   </li>
   <% else %>
