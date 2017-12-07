@@ -6,6 +6,6 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-omair = User.create(name: "Omair", email: "omair@gmail.com", password: "fakefakefake", authority: "customer")
+omair = User.create(name: "Omair", email: "omair@gmail.com", password: "fakefakefake")
 pai = Restaurant.create(name: "Pai", location: "123 Duncan St.", capacity: 200, open_time: "11:00", close_time: "20:00", max_reservation_size: 5), #image_url: "https://picsum.photos/200")
-bar isabel = Restaurant.create(name: "Bar Isabel", location: "796 college west.", capacity: 150, open_time: "16:00", close_time: "24:00", max_reservation_size: 5)#, image_url: "https://picsum.photos/200")
+bar_isabel = Restaurant.create(name: "Bar Isabel", location: "796 college west.", capacity: 150, open_time: "16:00", close_time: "24:00", max_reservation_size: 5)#, image_url: "https://picsum.photos/200")
