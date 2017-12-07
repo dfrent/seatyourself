@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       flash[:notice] = 'Login Successful'
 
 
-      session[:user_id] = u.id
+      session[:user_id] = @user.id
       if session[:restaurant_id_for_redirect]
         restaurant_redirect = session[:restaurant_id_for_redirect]
         session[:restaurant_id_for_redirect] = nil
