@@ -4,11 +4,12 @@ class Restaurant < ApplicationRecord
   has_many :reservations
   has_many :food_items
 
-
+#
   validates :name, :location, :capacity, :open_time, :close_time, :max_reservation_size, presence: true
   validates :max_reservation_size, numericality: { message: "%{value} seems wrong. Please enter a number." }
   validates :max_reservation_size, numericality: { :greater_than_or_equal_to => 1, message: " can't be negative." }
-
+  validates :open_time, numericality: { :greater_than_or_equal_to => 1, message: "can't be below 1." }
+  validates :close_time, numericality: { :less_than => 24, message: " can't be above 24." }
 
   def available_times
     time_spent_open = (close_time - open_time)
