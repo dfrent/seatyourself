@@ -1,11 +1,10 @@
-<h1>Reservation edit</h1>
-<h1>found in views reservation.edit.html.erb</h1>
+<h1>Edit your reservation</h1>
 
 <% @reservations.each do |reservation|  %>
 <%= form_for reservation, url: restaurant_reservation_path(@restaurant) do |f| %>
     <div class="field">
       <p><%= f.label :time %></p>
-      <p><%= f.text_field :time %></p>
+      <p><%= f.select(:time, @restaurant.available_times) %></p>
     </div>
 
     <div class="field">
