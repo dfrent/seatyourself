@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
 
   def show
-
+    @user = current_user
+    @reservations = current_user.reservations
   end
 
   def create
