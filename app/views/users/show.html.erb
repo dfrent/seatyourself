@@ -7,5 +7,5 @@
   <p>on <%= reservation.date %></p>
   <p>for <%= reservation.size %> guests</p>
   <p><%= link_to 'Edit Reservation', edit_restaurant_reservation_path(reservation.restaurant, reservation) %></p>
-  <p><%= link_to 'Cancel Reservation?', restaurant_reservation_path(reservation.restaurant, reservation), :method => :delete, :confirm => "Are you sure?" %></p>
+  <p><%= link_to('Cancel Reservation?', restaurant_reservation_path(reservation.restaurant_id, reservation), method: :delete, data: {:confirm => "Are you sure?"}) %></p>
 <% end %>

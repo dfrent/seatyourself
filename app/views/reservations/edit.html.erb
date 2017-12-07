@@ -2,10 +2,15 @@
 <h1>found in views reservation.edit.html.erb</h1>
 
 <% @reservations.each do |reservation|  %>
-<%= form_for reservation, url: restaurant_reservation_path do |f| %>
+<%= form_for reservation, url: restaurant_reservation_path(@restaurant) do |f| %>
     <div class="field">
       <p><%= f.label :time %></p>
       <p><%= f.text_field :time %></p>
+    </div>
+
+    <div class="field">
+      <p><%= f.label :date %></p>
+      <p><%= f.date_field :date %></p>
     </div>
 
     <div class="field">
