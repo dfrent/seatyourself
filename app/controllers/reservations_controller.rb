@@ -26,15 +26,8 @@ class ReservationsController < ApplicationController
   end
 
   def edit
-
-    @reservation.time = params[:reservation][:time]
-    @reservation.size = params[:reservation][:size]
-
-    if @reservation.save
-      redirect_to root_url
-    else
-      render :edit
-    end
+    @reservations = current_user.reservations
+    @restaurant = Restaurant.find(params[:id])
   end
 
   def update
@@ -73,6 +66,12 @@ class ReservationsController < ApplicationController
    end
 
  end
+
+private
+
+def method_name
+  session[:user_id] = @user.id
+end
 
 
 end

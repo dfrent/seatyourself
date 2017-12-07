@@ -6,6 +6,7 @@
 <p>Capacity: <%= @restaurant.capacity %> </p>
 
 <h3><%= link_to "Make a reservation?", new_restaurant_reservation_path(@restaurant) %></h3>
+<h5><%= link_to "Edit Your Reservations", edit_restaurant_reservation_path(@restaurant) %></h5>
 
 <% if @restaurant.food_items.length > 0 %>
   <p>Price Range: <%= @restaurant.price_range[0].price %> - <%= @restaurant.price_range[-1].price %></p>
