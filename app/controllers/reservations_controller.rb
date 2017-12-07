@@ -27,19 +27,20 @@ class ReservationsController < ApplicationController
 
   def edit
     @reservations = current_user.reservations
-    @restaurant = Restaurant.find(params[:id])
+    @restaurant = Restaurant.find(params[:restaurant_id])
+
   end
 
   def update
-    @restaurant = Restaurant.find(params[:id])
+    @restaurant = Restaurant.find(params[:restaurant_id])
+    @reservation = Reservation.find(params[:id])
     @reservation.time = params[:reservation][:time]
     @reservation.date = params[:reservation][:date]
     @reservation.size = params[:reservation][:size]
-    @reservation.max_reservation_size = params[:reservation][:max_reservation_size]
 
     if @reservation.save
-      flash[:success] = "#{@reservation.name} has been successfully updated"
-      redirect_to restaurant_path
+      flash[:success] = "Your reservation for #{@reservation.restaurant.name} has been successfully updated"
+      redirect_to root_url
     else
       flash.now[:alert] = "Sorry, there were issues updating your reservation"
       render 'edit'
@@ -52,10 +53,10 @@ class ReservationsController < ApplicationController
   end
 
   def destroy
-    @restaurant = Restaurant.find(params[:id])
+    @reservation = Reservation.find(params[:id])
     @reservation.destroy
-    flash[:notice] = "You have successfully deleted a reservation"
-    redirect_to restaurant_url
+    flash[:notice] = "You have successfully deleted your reservation"
+    redirect_to root_url
   end
 
  def ensure_logged_in_for_reservation
