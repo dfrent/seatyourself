@@ -1,19 +1,11 @@
-<h1>User Show Page</h1>
+<h1> <%= @user.name %>'s Account </h1>
 
-<section class="show-user-profile">
-  <p> <%= link_to 'Edit', edit_reservation_path(@reservation) %> <%= link_to 'Delete', reservation_path(@reservation), method: :delete, data: {confirm: "Are you sure?" } %> </p>
-  <p> <%= @reservation.restaurants.name %> </p>
-  <p> <%= @reservation.restaurants.description %> </p>
-  <%= image_tag @reservation.restaurants.image_url %>
-  <h2>Tags: image_url Please ad</h2>
-
-  <h2>Comments:</h2>
-  <ul>
-    <% @picture.comments.each do |comment| %>
-      <li>
-        <p> On <%= comment.created_at %> <%= comment.name %> said: </p>
-        <p> <%= comment.message %> </p>
-      </li>
-    <% end %>
-  </ul>
-</section>
+<h3>My Reservations</h3>
+<% @reservations.each do |reservation| %>
+  <p>Reservation for <%= reservation.restaurant.name %></p>
+  <p>at <%= reservation.time %></p>
+  <p>on <%= reservation.date %></p>
+  <p>for <%= reservation.size %> guests</p>
+  <p><%= link_to 'Edit Reservation', edit_restaurant_reservation_path(reservation.restaurant, reservation) %></p>
+  <p><%= link_to 'Cancel Reservation?', restaurant_reservation_path(reservation.restaurant, reservation), :method => :delete, :confirm => "Are you sure?" %></p>
+<% end %>
