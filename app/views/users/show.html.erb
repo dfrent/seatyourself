@@ -1,7 +1,6 @@
 <h1>User Show Page</h1>
-<h1>this is found in users.show.html.erb</h1>
 
-<section class="show-user-profile">  
+<section class="show-user-profile">
   <p> <%= link_to 'Edit', edit_reservation_path(@reservation) %> <%= link_to 'Delete', reservation_path(@reservation), method: :delete, data: {confirm: "Are you sure?" } %> </p>
   <p> <%= @reservation.restaurants.name %> </p>
   <p> <%= @reservation.restaurants.description %> </p>
