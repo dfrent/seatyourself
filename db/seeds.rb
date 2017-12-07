@@ -6,6 +6,43 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-omair = User.create(name: "Omair", email: "omair@gmail.com", password: "fakefakefake")
-pai = Restaurant.create(name: "Pai", location: "123 Duncan St.", capacity: 200, open_time: 11, close_time: 20, max_reservation_size: 5), #image_url: "https://picsum.photos/200")
-bar_isabel = Restaurant.create(name: "Bar Isabel", location: "796 college west.", capacity: 150, open_time: 16, close_time: 24, max_reservation_size: 5)#, image_url: "https://picsum.photos/200")
+# # Users
+omair = User.create(name: "Omair", email: "omair@gmail.com", password: "123")
+james = User.create(name: "James", email: "jim@gmail.com", password: "123")
+cordell = User.create(name: "Cordell", email: "gbd@gmail.com", password: "123")
+kyle = User.create(name: "Kyle", email: "kal@gmail.com", password: "123")
+
+# # Restaurants
+pai = Restaurant.create(name: "Pai", location: "123 Duncan St.", capacity: 200, open_time: 11, close_time: 20, max_reservation_size: 5) #image_url: "https://picsum.photos/200")
+bar_isabel = Restaurant.create(name: "Bar Isabel", location: "796 College West", capacity: 150, open_time: 16, close_time: 24, max_reservation_size: 5)#, image_url: "https://picsum.photos/200")
+electric_mud = Restaurant.create(name: "Electric Mud", location: "5 Brock Street", capacity: 60, open_time: 17, close_time: 23, max_reservation_size: 5)#, image_url: "https://picsum.photos/200")
+
+# # Reservations
+pai_reservation = Reservation.create(restaurant_id: pai.id, user_id: omair.id, time: "6 PM", size: 2, date: "2018-01-04")
+
+isabel_reservation = Reservation.create(restaurant_id: bar_isabel.id, user_id: james.id, time: "6 PM", size: 2, date: "2018-01-04")
+
+mud_reservation = Reservation.create(restaurant_id: electric_mud.id, user_id: cordell.id, time: "6 PM", size: 2, date: "2018-01-04")
+
+# # Food Items
+fries = FoodItem.create(restaurant_id: pai.id, name: "Fries", food_type: "appetizer", price: 3.99, description: "Salted, deep friend potato wedges.")
+
+hamburger = FoodItem.create(restaurant_id: pai.id, name: "Hamburger", food_type: "entree", price: 8.99, description: "Beef patty, lettuce, tomato, and cheese in a bun.")
+
+cola = FoodItem.create(restaurant_id: pai.id, name: "Cola", food_type: "drink", price: 1.99, description: "Carbonated sweet beverage.")
+
+salad = FoodItem.create(restaurant_id: pai.id, name: "Salad", food_type: "side", price: 3.99, description: "Assorted vegetables in  a bowl.")
+fries = FoodItem.create(restaurant_id: bar_isabel.id, name: "Fries", food_type: "appetizer", price: 3.99, description: "Salted, deep friend potato wedges.")
+
+hamburger = FoodItem.create(restaurant_id: bar_isabel.id, name: "Hamburger", food_type: "entree", price: 8.99, description: "Beef patty, lettuce, tomato, and cheese in a bun.")
+
+cola = FoodItem.create(restaurant_id: bar_isabel.id, name: "Cola", food_type: "drink", price: 1.99, description: "Carbonated sweet beverage.")
+
+salad = FoodItem.create(restaurant_id: bar_isabel.id, name: "Salad", food_type: "side", price: 3.99, description: "Assorted vegetables in  a bowl.")
+fries = FoodItem.create(restaurant_id: electric_mud.id, name: "Fries", food_type: "appetizer", price: 3.99, description: "Salted, deep friend potato wedges.")
+
+hamburger = FoodItem.create(restaurant_id: electric_mud.id, name: "Hamburger", food_type: "entree", price: 8.99, description: "Beef patty, lettuce, tomato, and cheese in a bun.")
+
+cola = FoodItem.create(restaurant_id: electric_mud.id, name: "Cola", food_type: "drink", price: 1.99, description: "Carbonated sweet beverage.")
+
+salad = FoodItem.create(restaurant_id: electric_mud.id, name: "Salad", food_type: "side", price: 3.99, description: "Assorted vegetables in  a bowl.")
