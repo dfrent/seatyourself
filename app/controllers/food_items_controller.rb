@@ -3,7 +3,7 @@ class FoodItemsController < ApplicationController
   before_action :ensure_owner, only: [:show, :create, :edit, :update, :delete]
 
   def index
-      @food_item = FoodItem.all
+    @food_item = FoodItem.all
   end
 
   def show

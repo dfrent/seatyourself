@@ -44,7 +44,7 @@
 
     <div class="field">
       <p><%= f.label :food_type %></p>
-      <p><%= f.text_field :food_type %></p>
+      <p><%= f.select(:food_type, @food_item.all_food_types) %></p>
     </div>
 
     <div class="field">
