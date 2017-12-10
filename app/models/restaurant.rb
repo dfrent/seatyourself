@@ -8,18 +8,25 @@ class Restaurant < ApplicationRecord
   validates :name, :location, :capacity, :open_time, :close_time, :max_reservation_size, presence: true
   validates :max_reservation_size, numericality: { message: "%{value} seems wrong. Please enter a number." }
   validates :max_reservation_size, numericality: { :greater_than_or_equal_to => 1, message: " can't be negative." }
+  validate
   # validates :open_time, numericality: { :greater_than_or_equal_to => 1, message: "can't be below 1." }
   # validates :close_time, numericality: { :less_than => 25, message: " can't be above 24." }
 
   def time_display(restaurant_time)
-    if restaurant_time.in_time_zone("EST").hour == 0
+    if restaurant_time.in_time_zone("UTC").hour == 0
       "12 AM"
-    elsif restaurant_time.in_time_zone("EST").hour == 12
+    elsif restaurant_time.in_time_zone("UTC").hour == 12
       "12 PM"
-    elsif restaurant_time.in_time_zone("EST").hour > 12
-      "#{(restaurant_time - 12.hours).in_time_zone("EST").hour} PM"
-    elsif restaurant_time.in_time_zone("EST").hour < 12 && restaurant_time.hour != 0
-      "#{restaurant_time.in_time_zone("EST").hour} AM"
+    elsif restaurant_time.in_time_zone("UTC").hour > 12
+      "#{(restaurant_time - 12.hours).in_time_zone("UTC").hour} PM"
+    elsif restaurant_time.in_time_zone("UTC").hour < 12 && restaurant_time.hour != 0
+      "#{restaurant_time.in_time_zone("UTC").hour} AM"
+    end
+  end
+
+  def correct_day_in_date
+    if close_time < open_time
+      self.close_time = self.close_time + 1.day
     end
   end
 
