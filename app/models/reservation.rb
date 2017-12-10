@@ -27,7 +27,7 @@ class Reservation < ApplicationRecord
 
   # def room_in_restaurant?
   #   current_bookings = 0
-  #   restaurant.reservations.where(time: "#{self.time}").each do |reservation|
+  #   restaurant.reservations.where(date: self.date).each do |reservation|
   #     current_bookings += reservation.size
   #   end
   #

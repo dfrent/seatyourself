@@ -2,10 +2,6 @@
 
 <% @reservations.each do |reservation|  %>
 <%= form_for reservation, url: restaurant_reservation_path(@restaurant) do |f| %>
-    <!-- <div class="field">
-      <p><%#= f.label :time %></p>
-      <p><%#= f.select(:time, @restaurant.available_times) %></p>
-    </div> -->
 
     <div class="field">
       <%= f.datetime_select :date,
