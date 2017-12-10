@@ -4,9 +4,8 @@ class Reservation < ApplicationRecord
 
   # validate  :room_in_restaurant?
   validate  :in_the_past?
-  # validate  :reservation_too_large?
-  validate  :after_close?
-  validate  :before_open?
+  validate  :reservation_too_large?
+  validate  :in_proper_hours?
   validates :date, :size, presence: true
   validates :size, numericality: { message: "%{value} seems wrong. Please enter a number." }
   validates :size, numericality: { :greater_than_or_equal_to => 1, message: "of reservation can't be negative." }
@@ -33,7 +32,7 @@ class Reservation < ApplicationRecord
 
   def reservation_too_large?
     if size > restaurant.max_reservation_size
-      errors.add(:size, "of reservation is too large. Must be #{restaurant.max_reservation_size} or less")
+      errors.add(:size, "of reservation is too large. Must be #{restaurant.max_reservation_size} or less.")
     end
   end
 
@@ -45,11 +44,11 @@ class Reservation < ApplicationRecord
     if self.date.hour < restaurant.open_time.hour
       military_reservation = self.date.hour + 24
       if military_reservation > military_close_time
-        errors.add(:date, "of reservation cannot be after closing hours.")
+        true
       end
     elsif restaurant.close_time.hour > restaurant.open_time.hour
       if self.date.hour > restaurant.close_time.hour
-        errors.add(:date, "of reservation cannot be after closing hours.")
+        true
       end
     end
 
@@ -57,7 +56,13 @@ class Reservation < ApplicationRecord
 
   def before_open?
     if self.date.hour < restaurant.open_time.hour
-      errors.add(:date, "of reservation cannot be before opening hours.")
+      true
+    end
+  end
+
+  def in_proper_hours?
+    if before_open? || after_close?
+      errors.add(:date, "of reservation must be during operating hours.")
     end
   end
 
