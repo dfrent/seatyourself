@@ -3,8 +3,8 @@
 <h3>My Reservations</h3>
 <% @reservations.each do |reservation| %>
   <p>Reservation for <%= reservation.restaurant.name %></p>
-  <!-- <p>at <%#= reservation.time %></p> -->
-  <p>on <%= reservation.display_res_time %></p>
+  <p>at <%= reservation.display_res_time %></p>
+  <p>on <%= reservation.display_res_date %></p>
   <p>for <%= reservation.size %> guests</p>
   <p><%= link_to 'Edit Reservation', edit_restaurant_reservation_path(reservation.restaurant, reservation) %></p>
   <p><%= link_to('Cancel Reservation?', restaurant_reservation_path(reservation.restaurant_id, reservation), method: :delete, data: {:confirm => "Are you sure?"}) %></p>

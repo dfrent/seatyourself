@@ -10,9 +10,19 @@ class Reservation < ApplicationRecord
   validates :size, numericality: { message: "%{value} seems wrong. Please enter a number." }
   validates :size, numericality: { :greater_than_or_equal_to => 1, message: "of reservation can't be negative." }
 
-  def display_res_time
+  def display_res_date
     date_display = date.inspect.split
     return "#{date_display[0]} #{date_display[2]}. #{date_display[1]}"
+  end
+
+  def display_res_time
+    date_display = date.to_time.inspect.split[1].split(/:/)
+    if date_display[0].to_i > 12
+      date_display[0] = "#{date_display[0].to_i - 12}:#{date_display[1]} PM"
+    else
+      date_display[0] = "#{date_display[0]}:#{date_display[1]} AM"
+    end
+    date_display[0]
   end
 
   # def room_in_restaurant?
