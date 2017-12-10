@@ -3,7 +3,7 @@ class Reservation < ApplicationRecord
   belongs_to :restaurant
 
   # validate  :room_in_restaurant?
-  # validate  :in_the_past?
+  validate  :in_the_past?
   # validate  :reservation_too_large?
   # validate  :after_close?
   validate  :before_open?
@@ -48,11 +48,11 @@ class Reservation < ApplicationRecord
       errors.add(:date, "of reservation cannot be before opening hours.")
     end
   end
-  #
-  # def in_the_past?
-  #   if self.date < Date.today
-  #     errors.add(:date, "of reservation cannot be in the past.")
-  #   end
-  # end
+
+  def in_the_past?
+    if self.date < Date.today
+      errors.add(:date, "of reservation cannot be in the past.")
+    end
+  end
 
 end
