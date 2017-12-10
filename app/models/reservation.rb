@@ -25,20 +25,20 @@ class Reservation < ApplicationRecord
     date_display[0]
   end
 
-  # def room_in_restaurant?
-  #   current_bookings = 0
-  #   restaurant.reservations.where(date: self.date).each do |reservation|
-  #     current_bookings += reservation.size
-  #   end
-  #
-  #   current_capacity = restaurant.capacity - current_bookings
-  #
-  #   if size <= current_capacity
-  #     true
-  #   else
-  #     errors.add(:size, "of reservation is too large. Apologies!")
-  #   end
-  # end
+  def room_in_restaurant?
+    current_bookings = 0
+    restaurant.reservations.where(date: self.date).each do |reservation|
+      current_bookings += reservation.size
+    end
+
+    current_capacity = restaurant.capacity - current_bookings
+
+    if size <= current_capacity
+      true
+    else
+      errors.add(:size, "of reservation is too large. Apologies!")
+    end
+  end
 
   def reservation_too_large?
     if size > restaurant.max_reservation_size

@@ -21,16 +21,16 @@ class RestaurantsController < ApplicationController
     @restaurant.location = params[:restaurant][:location]
     @restaurant.capacity = params[:restaurant][:capacity]
     @restaurant.close_time = Time.utc(params[:restaurant]["close_time(1i)"].to_i,
-                             params[:restaurant]["close_time(2i)"].to_i,
-                             params[:restaurant]["close_time(3i)"].to_i,
-                             params[:restaurant]["close_time(4i)"].to_i,
-                             params[:restaurant]["close_time(5i)"].to_i
+                                      params[:restaurant]["close_time(2i)"].to_i,
+                                      params[:restaurant]["close_time(3i)"].to_i,
+                                      params[:restaurant]["close_time(4i)"].to_i,
+                                      params[:restaurant]["close_time(5i)"].to_i
                            )
     @restaurant.open_time = Time.utc(params[:restaurant]["open_time(1i)"].to_i,
-                            params[:restaurant]["open_time(2i)"].to_i,
-                            params[:restaurant]["open_time(3i)"].to_i,
-                            params[:restaurant]["open_time(4i)"].to_i,
-                            params[:restaurant]["open_time(5i)"].to_i
+                                     params[:restaurant]["open_time(2i)"].to_i,
+                                     params[:restaurant]["open_time(3i)"].to_i,
+                                     params[:restaurant]["open_time(4i)"].to_i,
+                                     params[:restaurant]["open_time(5i)"].to_i
                           )
     @restaurant.max_reservation_size = params[:restaurant][:max_reservation_size]
     @restaurant.users << current_user
