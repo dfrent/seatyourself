@@ -19,7 +19,7 @@ cordell = User.create(name: "Cordell", email: "gbd@gmail.com", password: "123")
 kyle = User.create(name: "Kyle", email: "kal@gmail.com", password: "123")
 
 # # Restaurants
-day_start = Time.now.beginning_of_day
+day_start = Time.new.beginning_of_day
 pai = Restaurant.create(name: "Pai", location: "123 Duncan St.", capacity: 200, open_time: day_start + 8.hours, close_time: day_start + 20.hours, max_reservation_size: 5) #image_url: "https://picsum.photos/200")
 bar_isabel = Restaurant.create(name: "Bar Isabel", location: "796 College West", capacity: 150, open_time: day_start + 16.hours, close_time: day_start + 24.hours, max_reservation_size: 5)#, image_url: "https://picsum.photos/200")
 electric_mud = Restaurant.create(name: "Electric Mud", location: "5 Brock Street", capacity: 60, open_time: day_start + 17.hours, close_time: day_start + 23.hours, max_reservation_size: 5)#, image_url: "https://picsum.photos/200")
