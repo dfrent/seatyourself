@@ -5,7 +5,7 @@ class Reservation < ApplicationRecord
   # validate  :room_in_restaurant?
   validate  :in_the_past?
   # validate  :reservation_too_large?
-  # validate  :after_close?
+  validate  :after_close?
   validate  :before_open?
   validates :date, :size, presence: true
   validates :size, numericality: { message: "%{value} seems wrong. Please enter a number." }
@@ -37,12 +37,24 @@ class Reservation < ApplicationRecord
     end
   end
 
-  # def after_close?
-  #   if self.date > restaurant.close_time
-  #     errors.add(:date, "of reservation cannot be after closing hours.")
-  #   end
-  # end
-  #
+  def after_close?
+    if restaurant.close_time.hour < restaurant.open_time.hour
+      military_close_time = restaurant.close_time.hour + 24
+    end
+
+    if self.date.hour < restaurant.open_time.hour
+      military_reservation = self.date.hour + 24
+      if military_reservation > military_close_time
+        errors.add(:date, "of reservation cannot be after closing hours.")
+      end
+    elsif restaurant.close_time.hour > restaurant.open_time.hour
+      if self.date.hour > restaurant.close_time.hour
+        errors.add(:date, "of reservation cannot be after closing hours.")
+      end
+    end
+
+  end
+
   def before_open?
     if self.date.hour < restaurant.open_time.hour
       errors.add(:date, "of reservation cannot be before opening hours.")
