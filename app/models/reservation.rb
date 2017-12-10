@@ -2,12 +2,12 @@ class Reservation < ApplicationRecord
   belongs_to :user
   belongs_to :restaurant
 
-  validate  :room_in_restaurant?
-  validate  :in_the_past?
-  validate  :reservation_too_large?
+  # validate  :room_in_restaurant?
+  # validate  :in_the_past?
+  # validate  :reservation_too_large?
   # validate  :after_close?
   # validate  :before_open?
-  validates :time, :size, presence: true
+  validates :date, :size, presence: true
   validates :size, numericality: { message: "%{value} seems wrong. Please enter a number." }
   validates :size, numericality: { :greater_than_or_equal_to => 1, message: "of reservation can't be negative." }
 
