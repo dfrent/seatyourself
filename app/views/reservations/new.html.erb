@@ -6,17 +6,19 @@
 <% end %>
 </p>
 
+<p>Hours: <%= @restaurant.time_display(@restaurant.open_time) %> - <%= @restaurant.time_display(@restaurant.close_time) %> </p>
 <p>Maximum Reservation Size: <%= @restaurant.max_reservation_size %> </p>
 
 <%= form_for @reservation, url: restaurant_reservations_path(@restaurant) do |f| %>
-  <!-- <div class="field">
-    <p><%#= f.label :time %></p>
-    <p><%#= f.select(:time, @restaurant.available_times) %></p>
-  </div> -->
 
   <div class="field">
-    <p><%= f.label :date %></p>
-    <p><%= f.date_field :date %></p>
+    <%= f.datetime_select :date,
+                          :start_year => Date.current.year,
+                          :end_year => Date.current.year + 1,
+                          :default => Time.now,
+                          :ampm => true,
+                          :minute_step => 30
+    %>
   </div>
 
   <div class="field">

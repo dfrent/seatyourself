@@ -76,4 +76,3 @@ end
 
 
 end
-# Date.new(@reservation["date(1i)"].to_i, @reservation["date(2i)"].to_i, @reservation["date(3i)"].to_i)

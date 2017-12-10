@@ -10,14 +10,14 @@ class Restaurant < ApplicationRecord
   validates :max_reservation_size, numericality: { :greater_than_or_equal_to => 1, message: " can't be negative." }
 
   def time_display(restaurant_time)
-    if restaurant_time.in_time_zone("UTC").hour == 0
+    if restaurant_time.hour == 0
       "12 AM"
-    elsif restaurant_time.in_time_zone("UTC").hour == 12
+    elsif restaurant_time.hour == 12
       "12 PM"
-    elsif restaurant_time.in_time_zone("UTC").hour > 12
-      "#{(restaurant_time - 12.hours).in_time_zone("UTC").hour} PM"
-    elsif restaurant_time.in_time_zone("UTC").hour < 12 && restaurant_time.hour != 0
-      "#{restaurant_time.in_time_zone("UTC").hour} AM"
+    elsif restaurant_time.hour > 12
+      "#{(restaurant_time - 12.hours).hour} PM"
+    elsif restaurant_time.hour < 12 && restaurant_time.hour != 0
+      "#{restaurant_time.hour} AM"
     end
   end
 
