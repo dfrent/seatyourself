@@ -4,6 +4,7 @@ class ReservationsController < ApplicationController
 
   def show
     @reservation = Reservation.find(params[:id])
+    @restaurant = @reservation.restaurant
   end
 
   def create
@@ -29,7 +30,7 @@ class ReservationsController < ApplicationController
   end
 
   def edit
-    @reservation = current_user.reservation
+    @reservation = Reservation.find(params[:id])
     @restaurant = Restaurant.find(params[:restaurant_id])
   end
 

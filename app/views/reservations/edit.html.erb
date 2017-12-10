@@ -1,5 +1,13 @@
 <h1>Edit your reservation</h1>
 
+<p>
+  <% @reservation.errors.full_messages.each do |error| %>
+    <%= error %>
+  <% end %>
+</p>
+
+<p><%= @reservation.display_res_date %></p>
+<p><%= @reservation.display_res_time %></p>
 
 <%= form_for([@restaurant, @reservation]) do |f|%>
 
