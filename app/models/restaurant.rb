@@ -13,7 +13,9 @@ class Restaurant < ApplicationRecord
     date_display = datetime.to_s.split[1].split(/:/)
     if date_display[0][0] == "0"
       date_display[0] = date_display[0][1]
-      if date_display[0].to_i > 12
+      if date_display[0].to_i == 0
+        date_display[0] = "12:#{date_display[1]} AM"
+      elsif date_display[0].to_i > 12
         date_display[0] = "#{date_display[0].to_i - 12}:#{date_display[1]} PM"
       else
         date_display[0] = "#{date_display[0]}:#{date_display[1]} AM"
@@ -25,12 +27,13 @@ class Restaurant < ApplicationRecord
         date_display[0] = "#{date_display[0]}:#{date_display[1]} AM"
       end
     end
+    date_display[0]
 
-    if date_display[0][0] == "0"
-      date_display[0] = date_display[0][1]
-    else
-      date_display[0]
-    end
+    # if date_display[0][0] == "0"
+    #   date_display[0] = date_display[0][1]
+    # else
+    #   date_display[0]
+    # end
   end
 
   def available_times

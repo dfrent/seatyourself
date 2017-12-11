@@ -54,11 +54,11 @@ class Reservation < ApplicationRecord
 
     if self.date.hour < restaurant.open_time.hour
       military_reservation = self.date.hour + 24
-      if military_reservation > military_close_time
+      if military_reservation > military_close_time && self.errors.to_a.length == 0
         errors.add(:date, "of reservation must be during operating hours.")
       end
     elsif restaurant.close_time.hour > restaurant.open_time.hour
-      if self.date.hour > restaurant.close_time.hour
+      if self.date.hour > restaurant.close_time.hour && self.errors.to_a.length == 0
         errors.add(:date, "of reservation must be during operating hours.")
       end
     end
@@ -66,7 +66,7 @@ class Reservation < ApplicationRecord
   end
 
   def before_open?
-    if self.date.hour < restaurant.open_time.hour
+    if self.date.hour < restaurant.open_time.hour && self.errors.to_a.length == 0
       errors.add(:date, "of reservation must be during operating hours.")
     end
   end
