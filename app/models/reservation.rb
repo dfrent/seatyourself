@@ -2,7 +2,7 @@ class Reservation < ApplicationRecord
   belongs_to :user
   belongs_to :restaurant
 
-  # validate  :room_in_restaurant?
+  validate  :room_in_restaurant?
   validate  :in_the_past?
   validate  :reservation_too_large?
   validate  :after_close?
