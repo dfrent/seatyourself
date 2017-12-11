@@ -9,15 +9,27 @@ class Restaurant < ApplicationRecord
   validates :max_reservation_size, numericality: { message: "%{value} seems wrong. Please enter a number." }
   validates :max_reservation_size, numericality: { :greater_than_or_equal_to => 1, message: " can't be negative." }
 
-  def time_display(restaurant_time)
-    if restaurant_time.hour == 0
-      "12 AM"
-    elsif restaurant_time.hour == 12
-      "12 PM"
-    elsif restaurant_time.hour > 12
-      "#{(restaurant_time - 12.hours).hour} PM"
-    elsif restaurant_time.hour < 12 && restaurant_time.hour != 0
-      "#{restaurant_time.hour} AM"
+  def display_restaurant_time(datetime)
+    date_display = datetime.to_s.split[1].split(/:/)
+    if date_display[0][0] == "0"
+      date_display[0] = date_display[0][1]
+      if date_display[0].to_i > 12
+        date_display[0] = "#{date_display[0].to_i - 12}:#{date_display[1]} PM"
+      else
+        date_display[0] = "#{date_display[0]}:#{date_display[1]} AM"
+      end
+    else
+      if date_display[0].to_i > 12
+        date_display[0] = "#{date_display[0].to_i - 12}:#{date_display[1]} PM"
+      else
+        date_display[0] = "#{date_display[0]}:#{date_display[1]} AM"
+      end
+    end
+
+    if date_display[0][0] == "0"
+      date_display[0] = date_display[0][1]
+    else
+      date_display[0]
     end
   end
 

@@ -11,11 +11,12 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.new
     @restaurant = Restaurant.find(params[:restaurant_id])
     @reservation.size = params[:reservation][:size]
-    @reservation.date = Time.utc(params[:reservation]["date(1i)"].to_i,
-                        params[:reservation]["date(2i)"].to_i,
-                        params[:reservation]["date(3i)"].to_i,
-                        params[:reservation]["date(4i)"].to_i,
-                        params[:reservation]["date(5i)"].to_i)
+    @reservation.date = Time.new(params[:reservation]["date(1i)"].to_i,
+                                 params[:reservation]["date(2i)"].to_i,
+                                 params[:reservation]["date(3i)"].to_i,
+                                 params[:reservation]["date(4i)"].to_i,
+                                 params[:reservation]["date(5i)"].to_i
+                               )
     @reservation.restaurant_id = params[:restaurant_id]
     @reservation.user_id = current_user.id
 
@@ -37,7 +38,7 @@ class ReservationsController < ApplicationController
   def update
     @restaurant = Restaurant.find(params[:restaurant_id])
     @reservation = Reservation.find(params[:id])
-    @reservation.date = Time.utc(params[:reservation]["date(1i)"].to_i,
+    @reservation.date = Time.new(params[:reservation]["date(1i)"].to_i,
                                  params[:reservation]["date(2i)"].to_i,
                                  params[:reservation]["date(3i)"].to_i,
                                  params[:reservation]["date(4i)"].to_i,
