@@ -2,7 +2,7 @@
 
 <p> <%= @restaurant.description %> </p>
 <p>Address: <%= @restaurant.location %></p>
-<p>Hours: <%= @restaurant.open_time %> - <%= @restaurant.close_time %> </p>
+<p>Hours: <%= @restaurant.display_restaurant_time(@restaurant.open_time) %> - <%= @restaurant.display_restaurant_time(@restaurant.close_time) %> </p>
 <p>Capacity: <%= @restaurant.capacity %> </p>
 
 <h3><%= link_to "Make a reservation?", new_restaurant_reservation_path(@restaurant) %></h3>
@@ -40,6 +40,11 @@
     <div class="field">
       <p><%= f.label :name %></p>
       <p><%= f.text_field :name %></p>
+    </div>
+
+    <div class="field">
+      <p><%= f.label :description %></p>
+      <p><%= f.text_field :description %></p>
     </div>
 
     <div class="field">

@@ -24,12 +24,16 @@
 
   <div class="field">
     <p><%= f.label :open_time %></p>
-    <p><%= f.number_field :open_time %></p>
+    <p><%= f.time_select :open_time,
+  :minute_step =>30,
+  :ampm => true %></p>
   </div>
 
   <div class="field">
     <p><%= f.label :close_time %></p>
-    <p><%= f.number_field :close_time %></p>
+    <p><%= f.time_select :close_time,
+  :minute_step =>30,
+  :ampm => true %></p>
   </div>
 
   <div class="field">

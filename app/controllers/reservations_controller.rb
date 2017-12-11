@@ -3,20 +3,25 @@ class ReservationsController < ApplicationController
   before_action :ensure_logged_in_for_reservation
 
   def show
-    @reservation = Reservation.all
+    @reservation = Reservation.find(params[:id])
+    @restaurant = @reservation.restaurant
   end
 
   def create
     @reservation = Reservation.new
     @restaurant = Restaurant.find(params[:restaurant_id])
-    @reservation.time = params[:reservation][:time]
     @reservation.size = params[:reservation][:size]
-    @reservation.date = params[:reservation][:date]
+    @reservation.date = Time.new(params[:reservation]["date(1i)"].to_i,
+                                 params[:reservation]["date(2i)"].to_i,
+                                 params[:reservation]["date(3i)"].to_i,
+                                 params[:reservation]["date(4i)"].to_i,
+                                 params[:reservation]["date(5i)"].to_i
+                               )
     @reservation.restaurant_id = params[:restaurant_id]
     @reservation.user_id = current_user.id
 
     if @reservation.save
-      flash[:success] = "Reservation made for #{@reservation.restaurant.name} at #{@reservation.time}"
+      flash[:success] = "Reservation made for #{@reservation.restaurant.name} at #{@reservation.display_res_time}"
       redirect_to user_url
     else
       flash.now[:alert] = "Sorry, there were issues making your reservation."
@@ -26,16 +31,19 @@ class ReservationsController < ApplicationController
   end
 
   def edit
-    @reservations = current_user.reservations
+    @reservation = Reservation.find(params[:id])
     @restaurant = Restaurant.find(params[:restaurant_id])
-
   end
 
   def update
     @restaurant = Restaurant.find(params[:restaurant_id])
     @reservation = Reservation.find(params[:id])
-    @reservation.time = params[:reservation][:time]
-    @reservation.date = params[:reservation][:date]
+    @reservation.date = Time.new(params[:reservation]["date(1i)"].to_i,
+                                 params[:reservation]["date(2i)"].to_i,
+                                 params[:reservation]["date(3i)"].to_i,
+                                 params[:reservation]["date(4i)"].to_i,
+                                 params[:reservation]["date(5i)"].to_i
+                                )
     @reservation.size = params[:reservation][:size]
 
     if @reservation.save
@@ -76,4 +84,3 @@ end
 
 
 end
-# Date.new(@reservation["date(1i)"].to_i, @reservation["date(2i)"].to_i, @reservation["date(3i)"].to_i)

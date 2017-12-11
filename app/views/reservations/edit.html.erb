@@ -1,24 +1,32 @@
 <h1>Edit your reservation</h1>
 
-<% @reservations.each do |reservation|  %>
-<%= form_for reservation, url: restaurant_reservation_path(@restaurant) do |f| %>
-    <div class="field">
-      <p><%= f.label :time %></p>
-      <p><%= f.select(:time, @restaurant.available_times) %></p>
-    </div>
-
-    <div class="field">
-      <p><%= f.label :date %></p>
-      <p><%= f.date_field :date %></p>
-    </div>
-
-    <div class="field">
-      <p><%= f.label :size %></p>
-      <p><%= f.number_field :size %></p>
-    </div>
-
-    <div class="field">
-      <p><%= f.submit  %></p>
-    </div>
+<p>
+  <% @reservation.errors.full_messages.each do |error| %>
+    <%= error %>
   <% end %>
+</p>
+
+<p><%= @reservation.display_res_date %></p>
+<p><%= @reservation.display_res_time %></p>
+
+<%= form_for([@restaurant, @reservation]) do |f|%>
+
+  <div class="field">
+    <%= f.datetime_select :date,
+                          :start_year => Date.current.year,
+                          :end_year => Date.current.year + 1,
+                          :default => Time.now,
+                          :ampm => true,
+                          :minute_step => 30
+    %>
+  </div>
+
+  <div class="field">
+    <p><%= f.label :size %></p>
+    <p><%= f.number_field :size %></p>
+  </div>
+
+  <div class="field">
+    <p><%= f.submit  %></p>
+  </div>
 <% end %>
